@@ -7,10 +7,11 @@ from Pages.base_page import BasePage
 
 @pytest.fixture()
 def browser():
-    driver = webdriver.Chrome(executable_path='/Users/Kate/PycharmProjects/AQA/driver/chromedriver 2')
+    driver = webdriver.Chrome(executable_path='/Users/Kate/PycharmProjects/PracticePageAQA/driver/chromedriver 2')
     driver.maximize_window()
     yield driver
-    driver.save_screenshot("/Users/Kate/PycharmProjects/AQA/screenshots/screenschot_%s.png" % (datetime.datetime.now()))
+    driver.save_screenshot("/Users/Kate/PycharmProjects/PracticePageAQA/screenshots/screenschot_%s.png" %
+                                      (datetime.datetime.now()))
     driver.quit()
 
 
