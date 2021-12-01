@@ -1,3 +1,4 @@
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -5,11 +6,12 @@ from selenium.webdriver.support import expected_conditions as EC
 class CommonActions:
 
     @staticmethod
-    def wait_till_element_present(driver, locator, timeout=10):
+    def wait_till_element_is_displayed(driver, locator, timeout=10):
         wait = WebDriverWait(driver, timeout)
         try:
-            return wait.until(EC.element_to_be_clickable(locator))
-        except RuntimeError:
+            wait.until(EC.visibility_of_element_located(locator))
+            return True
+        except TimeoutException:
             return False
 
     @staticmethod
@@ -17,7 +19,7 @@ class CommonActions:
         wait = WebDriverWait(driver, timeout)
         try:
             return wait.until(EC.text_to_be_present_in_element(locator, text))
-        except RuntimeError:
+        except TimeoutException:
             return False
 
     @staticmethod
@@ -25,7 +27,7 @@ class CommonActions:
         wait = WebDriverWait(driver, timeout)
         try:
             return wait.until(EC.element_to_be_selected(locator))
-        except RuntimeError:
+        except TimeoutException:
             return False
 
     @staticmethod
@@ -33,7 +35,7 @@ class CommonActions:
         wait = WebDriverWait(driver, timeout)
         try:
             return wait.until(EC.presence_of_all_elements_located(locator))
-        except RuntimeError:
+        except TimeoutException:
             return False
 
     @staticmethod
@@ -61,4 +63,3 @@ class CommonActions:
             return alert.text
         except RuntimeError:
             return False
-

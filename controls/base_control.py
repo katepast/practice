@@ -8,8 +8,6 @@ class BaseControl:
     """
     Represents base class UI controls
     :param driver: instance of WebDriver
-    :param label: label for group control, used in locator
-    :param locator: locator of element (optional)
 
     """
     def __init__(self, driver):

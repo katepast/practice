@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 
 from Pages.base_page import BasePage
-from Pages.main_page import MainPage
+from Pages.main_page import CoursePage
 from controls.Input import Input
 from helpers.config import Data
 
@@ -20,4 +20,4 @@ class LoginPage(BasePage):
 
     def click_login_btn(self):
         self.login_btn.click()
-        return MainPage(self.driver)
+        return CoursePage(self.driver)

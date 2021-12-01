@@ -1,5 +1,5 @@
 from selenium.webdriver.common.by import By
-from controls.base_control import BaseControl
+from practice_page.controls.base_control import BaseControl
 
 
 class Input(BaseControl):
@@ -14,6 +14,6 @@ class Input(BaseControl):
         else:
             self._locator = (By.XPATH, self.INPUT_XPATH.format(placeholder))
 
-    def send_keys(self, value):
+    def set_value(self, value):
         el = self._get_web_element()
         return el.send_keys(value)
