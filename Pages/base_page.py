@@ -1,12 +1,10 @@
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
-# from Pages.login_page import LoginPage
-# from Pages.practice_page import PracticePage
+
+from configs.config import BASE_URL
 
 
 class BasePage:
-    BASE_URL = "https://courses.letskodeit.com/practice"
-    COURSES_URL = "https://courses.letskodeit.com/courses"
 
     def __init__(self, driver: WebDriver):
         self.driver = driver
@@ -15,11 +13,3 @@ class BasePage:
 
     def open_url(self, url: str = BASE_URL):
         self.driver.get(url)
-
-    # def open_login_page(self):
-    #     self.driver.find_element(*self.login_btn_link).click()
-    #     return LoginPage(self.driver)
-    #
-    # def open_practice_page(self):
-    #     self.driver.find_element(*self.practice_btn_link).click()
-    #     return PracticePage(self.driver)

@@ -2,12 +2,13 @@ import datetime
 import pytest
 from selenium import webdriver
 
+from configs.config import COURSES_URL
 from practice_page.Pages.base_page import BasePage
 
 
 @pytest.fixture()
 def browser(request):
-    path = '/driver/chromedriver'
+    path = '/Users/kate.pastbina/PycharmProjects/practice/practice_page/driver/chromedriver'
     driver =\
         webdriver.Chrome(executable_path=path)
     driver.maximize_window()
@@ -29,7 +30,7 @@ def open_site(browser):
 @pytest.fixture()
 def open_course_site(browser):
     base_page = BasePage(browser)
-    base_page.open_url(url=BasePage.COURSES_URL)
+    base_page.open_url(url=COURSES_URL)
     yield browser
 
 
