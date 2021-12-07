@@ -1,6 +1,5 @@
 from selenium.webdriver.common.by import By
 
-from helpers.common_actions import CommonActions
 from helpers.logging import logger
 from practice_page.Pages.base_page import BasePage
 from practice_page.controls.Input import Input
@@ -29,7 +28,7 @@ class CoursePage(BasePage):
         Method to check presence of presence of title 'All Courses' on the page
         """
         logger.debug("Check presence of presence of title 'All Courses' on the page")
-        return CommonActions.wait_till_element_is_displayed(self.driver, self.all_courses_title)
+        return self.driver.wait_till_element_is_displayed(self.all_courses_title)
 
     def get_all_items(self):
         """

@@ -1,5 +1,6 @@
 import pytest
 
+from helpers import logging
 from helpers.logging import logger
 from helpers.verify import Verify
 from practice_page.Pages.main_page import CoursePage

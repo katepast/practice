@@ -1,7 +1,6 @@
-from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
-
 from configs.config import BASE_URL
+from conftest import WebDriver
 
 
 class BasePage:

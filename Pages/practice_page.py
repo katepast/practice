@@ -6,7 +6,6 @@ from controls.Input import Input
 from controls.multiple_selector import MultipleSelector
 from controls.radio_button import RadioButton
 from controls.selector import Selector
-from helpers.common_actions import CommonActions
 
 
 class PracticePage(BasePage):
@@ -64,18 +63,18 @@ class PracticePage(BasePage):
         self.alert_btn.click()
 
     def is_alert_displayed(self):
-        return CommonActions.wait_till_alert_is_present(driver=self.driver)
+        return self.driver.wait_till_alert_is_present(driver=self.driver)
 
     def confirm_alert(self):
         alert = self.driver.switch_to_alert()
         alert.accept()
 
     def is_alert_not_displayed(self):
-        return CommonActions.wait_till_alert_is_present(driver=self.driver)
+        return self.driver.wait_till_alert_is_present()
 
     def get_alert_text(self):
         logging.debug("Get alert text")
-        return CommonActions.get_alert_text(driver=self.driver, timeout=2)
+        return self.driver.get_alert_text()
 
     def select_option_from_selector(self, text):
         logging.debug("Select option by visible text")
@@ -90,7 +89,7 @@ class PracticePage(BasePage):
         return self.option_selector.get_all_options()
 
     def is_multiple_sel_displayed(self):
-        return  self.multiple_selector.is_element_displayed()
+        return self.multiple_selector.is_element_displayed()
 
     def select_multiple_element_from_multi_sel(self, text):
         logging.debug("Select multiple element from multi selector")

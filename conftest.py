@@ -1,23 +1,24 @@
-import datetime
+import time
 import pytest
 from selenium import webdriver
 
 from configs.config import COURSES_URL
+from helpers.web_driver.practice_web_driver import WebDriver, WebDriverListener
+from project_const import chromedriver_path, screenshot_path
 from practice_page.Pages.base_page import BasePage
 
 
 @pytest.fixture()
 def browser(request):
-    path = '/Users/kate.pastbina/PycharmProjects/practice/practice_page/driver/chromedriver'
-    driver =\
-        webdriver.Chrome(executable_path=path)
-    driver.maximize_window()
+    driver = webdriver.Chrome(executable_path=chromedriver_path)
+    ef_driver = WebDriver(driver, WebDriverListener())
+    ef_driver.maximize_window()
     failed_before = request.session.testsfailed
-    yield driver
+    yield ef_driver
     if request.session.testsfailed != failed_before:
-        driver.save_screenshot("/Users/Kate/PycharmProjects/PracticePageAQA/screenshots/screenschot_%s.png" %
-                               (datetime.datetime.now()))
-    driver.quit()
+        ef_driver.\
+            save_screenshot(screenshot_path + "/screen_%s.png" % (time.asctime()))
+    ef_driver.quit()
 
 
 @pytest.fixture()
