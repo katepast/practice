@@ -1,11 +1,12 @@
 import time
 import pytest
+import os
 from selenium import webdriver
 
 from configs.config import COURSES_URL
 from helpers.web_driver.practice_web_driver import WebDriver, WebDriverListener
 from project_const import chromedriver_path, screenshot_path
-from practice_page.Pages.base_page import BasePage
+from Pages.base_page import BasePage
 
 
 @pytest.fixture()
@@ -16,8 +17,9 @@ def browser(request):
     failed_before = request.session.testsfailed
     yield ef_driver
     if request.session.testsfailed != failed_before:
-        ef_driver.\
-            save_screenshot(screenshot_path + "/screen_%s.png" % (time.asctime()))
+        if not os.path.exists(screenshot_path):
+            os.mkdir("practice_page/screenshot")
+        ef_driver.save_screenshot(screenshot_path + "/screen_%s.png" % (time.asctime()))
     ef_driver.quit()
 
 

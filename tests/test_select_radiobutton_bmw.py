@@ -2,7 +2,7 @@ import pytest
 
 from helpers.logging import logger
 from helpers.verify import Verify
-from practice_page.Pages.practice_page import PracticePage
+from Pages.practice_page import PracticePage
 
 
 class TestSelectRbBMW:

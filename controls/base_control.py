@@ -105,9 +105,3 @@ class BaseControl:
         else:
             self._get_web_element().send_keys(new_value)
 
-    def scroll_to_element(self):
-        """
-        Method to scroll to element
-        """
-        element = self._get_web_element()
-        self._driver.execute_script("arguments[0].scrollIntoView(true);", element)

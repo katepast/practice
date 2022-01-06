@@ -1,4 +1,4 @@
-from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.webdriver.support.abstract_event_listener import AbstractEventListener
 from selenium.webdriver.support.event_firing_webdriver import EventFiringWebDriver
 from selenium.webdriver.support.wait import WebDriverWait
@@ -63,3 +63,35 @@ class WebDriver(EventFiringWebDriver):
             return alert.text
         except RuntimeError:
             return False
+
+    def is_element_present_and_displayed(self, locator):
+        """
+        Check if element is present and visible. is_displayed() method still can throw NoSuchElementException
+        """
+        try:
+            return self.find_element(*locator).is_displayed()
+        except NoSuchElementException:
+            return False
+
+    def scroll_to_element(self, web_element, parameter=""):
+        """
+        Scroll to the exact element
+        :param web_element: web element (e.g. driver.find_element_by_xpath("//div")
+        :param parameter: Parameter for scroll (e.g. parameter="{block: 'center'}")
+        Full list of parameters: https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView
+        """
+        self._driver.execute_script("return arguments[0].scrollIntoView({parameter});".format(parameter=parameter),
+                                    web_element)
+
+    def scroll_to_element_center(self, element):
+        """
+        Scroll to the exact element
+        :param element: web element (e.g. driver.find_element_by_xpath("//div")
+        """
+        # Calculate coordinates center of view, calculate top coordinates of retrieved element,
+        # Based on these coordinates perform scroll to the top of element with
+        # the down shift by half of element's height
+        self.execute_script(
+            "var viewPortHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);"
+            "var elementTop = arguments[0].getBoundingClientRect().top;"
+            "window.scrollBy(0, elementTop-(viewPortHeight/2));", element)
