@@ -23,6 +23,35 @@ class PracticePage(BasePage):
         self.option_selector = Selector(driver=driver, option="Select Class Example")
         self.multiple_selector = MultipleSelector(driver=driver, legend="Multiple Select Example")
 
+        # web table
+        self.table = ".//table[@id='product']"
+        self.tbody = ".//tbody"
+        self.table_rows = ".//table[@id='product']//tr"
+
+    def get_title_columns_from_table(self):
+        table_xpath = self.driver.find_element_by_xpath(self.tbody)
+        return [row.text for row in table_xpath.find_elements_by_tag_name("th")]
+
+    def get_amount_of_rows_in_table(self):
+        res = str(len(self.driver.find_elements_by_xpath(self.table_rows)))
+        logging.debug("Founded amount of rows in the table", res)
+        return res
+
+    def get_values_for_author_column(self):
+        logging.debug("Founded values for specified column 'Author' in the table")
+        author_rows = self.driver.find_elements_by_xpath(".//td[@class='author-name']")
+        return [row.text for row in author_rows]
+
+    def get_values_for_course_column(self):
+        logging.debug("Founded values for specified column 'Course' in the table")
+        author_rows = self.driver.find_elements_by_xpath(".//td[@class='course-name']")
+        return [row.text for row in author_rows]
+
+    def get_values_for_price_column(self):
+        logging.debug("Founded values for specified column 'Price' in the table")
+        author_rows = self.driver.find_elements_by_xpath(".//td[@class='price']")
+        return [row.text for row in author_rows]
+
     def check_bmw_radio_btn(self):
         """ Method to check radiobutton 'BMW' """
         logging.debug("Method to check radiobutton 'BMW'")

@@ -8,7 +8,7 @@ from Pages.main_page import CoursePage
 class TestSearchCourse:
     searched_course = "JavaScript for beginners"
 
-    @pytest.mark.debug
+    # @pytest.mark.debug
     def test_open_login_page(self, open_course_site):
         main_page = CoursePage(open_course_site)
 

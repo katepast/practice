@@ -7,7 +7,7 @@ from Pages.practice_page import PracticePage
 
 class TestSelectRbBMW:
 
-    @pytest.mark.debug
+    # @pytest.mark.debug
     def test_select_rbb_bmw(self, open_site):
         practice_page = PracticePage(open_site)
         practice_page.check_bmw_radio_btn()
