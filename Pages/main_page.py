@@ -1,8 +1,8 @@
 from selenium.webdriver.common.by import By
 
+from Pages.base_page import BasePage
+from controls.Input import Input
 from helpers.logging import logger
-from practice_page.Pages.base_page import BasePage
-from practice_page.controls.Input import Input
 
 
 class CoursePage(BasePage):

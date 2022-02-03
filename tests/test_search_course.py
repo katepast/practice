@@ -1,8 +1,9 @@
 import pytest
 
+from Pages.main_page import CoursePage
 from helpers.logging import logger
 from helpers.verify import Verify
-from Pages.main_page import CoursePage
+
 
 
 class TestSearchCourse:

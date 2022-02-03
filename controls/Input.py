@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
-from practice_page.controls.base_control import BaseControl
+
+from controls.base_control import BaseControl
 
 
 class Input(BaseControl):
